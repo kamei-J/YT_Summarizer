@@ -6,6 +6,7 @@ from langchain_core.prompts import PromptTemplate
 from langgraph.graph import StateGraph, START, END
 from langchain_community.tools import YouTubeSearchTool
 from youtube_transcript_api import YouTubeTranscriptApi
+import re
 
 load_dotenv(override=True)
 
@@ -25,18 +26,25 @@ class ExtractedVideoID(BaseModel):
     video_id: str = Field(description="The ID of the youtube video")
 
 def extract_video_id(state: GraphState):
-    video_url = state.video_url
-    template = PromptTemplate(
-        template='''
-        Extract the video ID from the following YouTube URL: {video_url}
-        Return only the video ID.
-        ''',
-        input_variables=["video_url"]
-    )
-    llm_with_structured_output = llm.with_structured_output(ExtractedVideoID)
-    chain = template | llm_with_structured_output
-    response = chain.invoke({"video_url": video_url})
-    return {"video_id": response.video_id}
+    video_url = (state.video_url or "").strip()
+    # common YouTube URL patterns
+    patterns = [
+        r'youtu\.be\/([0-9A-Za-z_-]{11})',
+        r'[?&]v=([0-9A-Za-z_-]{11})',
+        r'embed\/([0-9A-Za-z_-]{11})',
+        r'\/v\/([0-9A-Za-z_-]{11})'
+    ]
+    for p in patterns:
+        m = re.search(p, video_url)
+        if m:
+            return {"video_id": m.group(1)}
+
+    # fallback: last 11-char token
+    m = re.search(r'([0-9A-Za-z_-]{11})$', video_url)
+    if m:
+        return {"video_id": m.group(1)}
+
+    return {"video_id": None}
 
 def extract_transcript(state: GraphState):
     video_id = state.video_id
