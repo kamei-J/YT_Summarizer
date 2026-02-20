@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from pydantic import BaseModel, Field
 from langchain_core.prompts import PromptTemplate
-import re
 from langgraph.graph import StateGraph, START, END
 from langchain_community.tools import YouTubeSearchTool
 from youtube_transcript_api import YouTubeTranscriptApi
