@@ -19,24 +19,25 @@ Ideal for quickly understanding long videos without watching them end‑to‑end
 
 1. Environment SetUp
   - create a .env file in the root directory:
-   ```bash
-      GROQ_API_KEY=your_groq_api_key
-   ```
+```bash
+  GROQ_API_KEY=your_groq_api_key
+```
 
 2. Install required packages:
-    ```bash
-        pip install -r requirement.txt
-    ```
+ ```bash
+  pip install -r requirement.txt
+ ```
 3.  Running the Servers
-   ```bash
-      fastapi dev main.py
-   ```
+ ```bash
+   fastapi dev main.py
+ ```
 ---
 
 ## 📝 Usage
+```bash
+  python main.py --url "https://www.youtube.com/watch?v=VIDEO_ID"
+```
 
-    ```bash
-        python main.py --url "https://www.youtube.com/watch?v=VIDEO_ID"
 
     Supported options (example):
 
@@ -62,3 +63,4 @@ YT_Summarizer/
 ├── requirement.txt     # dependencies
 
 ├── README.md           # this file
+
