@@ -38,15 +38,14 @@ create a .env file in the root directory:
   python main.py --url "https://www.youtube.com/watch?v=VIDEO_ID"
 ```
 
-
-    Supported options (example):
+- Supported options (example):
 
     --url – YouTube video link (required)
     --output – Path to save summary (defaults to stdout)
     --model – Summarization model to use (gpt, bart, etc.)
     --no-cache – Force re-download of transcript
 
-    Example output:
+- Example output:
 
     Title: The Future of AI
     Summary:
@@ -63,5 +62,6 @@ YT_Summarizer/
 ├── requirement.txt     # dependencies
 ├── README.md           # this file
 ```
+
 
 
