@@ -18,7 +18,7 @@ Ideal for quickly understanding long videos without watching them end‑to‑end
 ## 🛠️ Installation
 
 1. Environment SetUp
-  - create a .env file in the root directory:
+create a .env file in the root directory:
 ```bash
   GROQ_API_KEY=your_groq_api_key
 ```
@@ -56,11 +56,12 @@ Ideal for quickly understanding long videos without watching them end‑to‑end
 
 ---
 ## 🧩 Project Structure
-
+```bash
 YT_Summarizer/
 ├── main.py             # entry point
 ├── app.py              # core logic (transcript fetching, summarization)
 ├── requirement.txt     # dependencies
-
 ├── README.md           # this file
+```
+
 
